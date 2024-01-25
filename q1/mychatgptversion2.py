@@ -8,11 +8,11 @@ client = OpenAI(api_key=api_key)
 # Given conversation
 conversation = read_transcript("C:\\Users\\cohen\\Transcripts\\Transcript1.docx")
 
-def get_response_chat_with_info(conversation, questions):
+def get_response_chat_with_info(conversation):
     # Call the OpenAI API to generate completions for the given messages
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        messages=conversation + [{"role": "user", "content": question} for question in questions]
+        messages=conversation
     )
 
     # Extract and return the generated response from the API response
@@ -27,7 +27,7 @@ questions_to_ask = [
 ]
 
 # Get the response based on the existing conversation and questions
-response = get_response_chat_with_info(conversation, questions_to_ask)
+response = get_response_chat_with_info(conversation)
 
 # checking : Print or use the generated response
 print(response)
